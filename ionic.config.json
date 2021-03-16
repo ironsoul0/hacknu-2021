@@ -1,0 +1,7 @@
+{
+  "name": "aitu-apps-react-boilerplate",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

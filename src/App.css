@@ -1,0 +1,24 @@
+/* Without setting height the slides will take up the height of the slide's content */
+ion-slides {
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slide-block {
+  padding: 0 16px;
+  text-align: left;
+}
+
+.slide-block h2 {
+  font-weight: bold;
+}
+
+.slide-button {
+  padding: 0 16px 27px;
+  width: 100%;
+}
