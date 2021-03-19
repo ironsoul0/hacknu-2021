@@ -5,6 +5,7 @@
   "dependencies": {
     "@btsd/aitu-bridge": "^0.1.54",
     "@capacitor/core": "2.4.6",
+    "@craco/craco": "^6.1.1",
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
     "@testing-library/jest-dom": "^5.11.9",
