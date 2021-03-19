@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "aitu-apps-react-boilerplate",
+  "appName": "the-glider",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
