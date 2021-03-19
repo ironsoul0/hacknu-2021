@@ -1,34 +1,27 @@
-import { useEffect, useRef, useState } from "react";
-import aituBridge from "@btsd/aitu-bridge";
-import {
-  IonApp,
-  IonSlides,
-  IonSlide,
-  IonContent,
-  IonButton,
-  IonText,
-} from "@ionic/react";
+import React, { useEffect, useRef, useState } from 'react';
+import aituBridge from '@btsd/aitu-bridge';
+import { IonApp, IonSlides, IonSlide, IonContent, IonButton, IonText } from '@ionic/react';
 
-import "./App.css";
+import './App.css';
 
 /* Core CSS required for Ionic components to work properly */
-import "@ionic/react/css/core.css";
+import '@ionic/react/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
 
 /* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
+import '@ionic/react/css/padding.css';
+import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/display.css';
 
 /* Theme variables */
-import "./theme/variables.css";
+import './theme/variables.css';
 
 interface ISlideContentProps {
   title: string;
@@ -44,7 +37,7 @@ const SlideContent: React.FC<ISlideContentProps> = ({
   description,
   buttonTitle,
   imgSrc,
-}) => {
+}: ISlideContentProps) => {
   return (
     <>
       <img src={imgSrc} />
@@ -90,7 +83,7 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const [name, setName] = useState("<username>");
+  const [name, setName] = useState('<username>');
 
   const handleButtonClick = () => {
     slider.current?.slideNext();
@@ -104,45 +97,41 @@ const App: React.FC = () => {
             <SlideContent
               title={`Привет, ${name}, Мини-приложения в Aitu`}
               onClick={handleButtonClick}
+              description={'Расскажем, что это и как использовать aitu.apps для своего бизнеса'}
+              buttonTitle={'Я готов!'}
+              imgSrc={'/assets/slide1.png'}
+            />
+          </IonSlide>
+          <IonSlide>
+            <SlideContent
+              title={'+800.000 пользователей Aitu'}
+              onClick={handleButtonClick}
+              description={'Могут увидеть ваше мини-приложение и стать его пользователями'}
+              buttonTitle={'Интересно'}
+              imgSrc={'/assets/slide2.png'}
+            />
+          </IonSlide>
+          <IonSlide>
+            <SlideContent
+              title={'Всегда под рукой '}
+              onClick={handleButtonClick}
               description={
-                "Расскажем, что это и как использовать aitu.apps для своего бизнеса"
+                'Каталог с мини-приложениями находится на центральной вкладке. Пользователи легко его найдут'
               }
-              buttonTitle={"Я готов!"}
-              imgSrc={"/assets/slide1.png"}
-            ></SlideContent>
+              buttonTitle={'Что ещё?'}
+              imgSrc={'/assets/slide3.png'}
+            />
           </IonSlide>
           <IonSlide>
             <SlideContent
-                title={"+800.000 пользователей Aitu"}
-                onClick={handleButtonClick}
-                description={
-                  "Могут увидеть ваше мини-приложение и стать его пользователями"
-                }
-                buttonTitle={"Интересно"}
-                imgSrc={"/assets/slide2.png"}
-            ></SlideContent>
-          </IonSlide>
-          <IonSlide>
-            <SlideContent
-                title={"Всегда под рукой "}
-                onClick={handleButtonClick}
-                description={
-                  "Каталог с мини-приложениями находится на центральной вкладке. Пользователи легко его найдут"
-                }
-                buttonTitle={"Что ещё?"}
-                imgSrc={"/assets/slide3.png"}
-            ></SlideContent>
-          </IonSlide>
-          <IonSlide>
-            <SlideContent
-                title={"Баннер с ваши предложением"}
-                onClick={handleButtonClick}
-                description={
-                  "         Уникальная скидка, спецпредложение или акция. Донесите ценное предложение до всех пользователей Aitu"
-                }
-                buttonTitle={"Далее"}
-                imgSrc={"/assets/slide4.png"}
-            ></SlideContent>
+              title={'Баннер с ваши предложением'}
+              onClick={handleButtonClick}
+              description={
+                'Уникальная скидка, спецпредложение или акция. Донесите ценное предложение до всех пользователей Aitu'
+              }
+              buttonTitle={'Далее'}
+              imgSrc={'/assets/slide4.png'}
+            />
           </IonSlide>
         </IonSlides>
       </IonContent>
