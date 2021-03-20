@@ -13,7 +13,7 @@ export const GameTemplate: FC<Props> = ({
   setActiveGame,
 }: Props) => {
   return (
-    <div className={clsx(['h-screen flex items-center justify-center bg-blue-500 px-4 relative', className])}>
+    <div className={clsx(['h-screen flex items-center justify-center bg-blue-500 relative', className])}>
       {!activeGame && (
         <>
           <div className="text-center animate-smooth-appear">
@@ -22,7 +22,7 @@ export const GameTemplate: FC<Props> = ({
             <p className="text-3xl text-white mt-5">{description}</p>
             <p className="text-3xl text-white mt-5">Нажмите чтобы продолжить.</p>
           </div>
-          <div className="absolute h-full bg-black z-10 w-full bg-opacity-0" onClick={() => setActiveGame(true)}></div>
+          <div className="absolute h-full bg-black z-10 w-full bg-opacity-0" onClick={() => setActiveGame(true)} />
         </>
       )}
       {activeGame && children}
