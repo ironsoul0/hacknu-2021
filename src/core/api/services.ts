@@ -9,11 +9,11 @@ export const api = axios.create({
 });
 
 export const createUser = (userInfo: CreateUserResponse): AxiosPromise<CreateUserResponse> =>
-  api.patch(`/users/${userInfo.id}/`, userInfo);
+  api.patch(`users/${userInfo.id}/`, userInfo);
 
-export const getScores = (id: string): AxiosPromise<GetScoresResponse> => api.get(`/users/${id}/scores/`);
+export const getScores = (id: string): AxiosPromise<GetScoresResponse> => api.get(`users/${id}/scores/`);
 
 export const updateScore = (id: string, game: GameType, newScore: number): AxiosPromise<UpdateScoreResponse> =>
-  api.post(`/users/${id}/scores/`, {
+  api.post(`users/${id}/scores/`, {
     [game]: newScore,
   });

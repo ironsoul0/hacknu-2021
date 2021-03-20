@@ -4,6 +4,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider as JotaiProvider } from 'jotai';
 
+import { GameType } from './core';
 import { DashboardPage, ReactionGame, ChimpGame } from './components';
 import NumberMemory from './components/NumberMemory/NumberMemory';
 
@@ -15,13 +16,13 @@ const App: React.FC = () => (
           <Route exact path="/">
             <DashboardPage />
           </Route>
-          <Route exact path="/game/reaction">
+          <Route exact path={`/game/${GameType.reactionTime}`}>
             <ReactionGame />
           </Route>
-          <Route exact path="/game/memory">
+          <Route exact path={`/game/${GameType.numberMemory}`}>
             <NumberMemory />
           </Route>
-          <Route exact path="/game/chimp">
+          <Route exact path={`/game/${GameType.chimpTest}`}>
             <ChimpGame />
           </Route>
         </IonRouterOutlet>
