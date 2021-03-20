@@ -8,6 +8,7 @@ import { NumberMemoryIcon } from '../../core';
 const icon = <NumberMemoryIcon />;
 
 const NumberMemory: React.FC = () => {
+  const [activeGame, setActiveGame] = useState(false);
   const [level, setLevel] = useState(1);
   const [guess, setGuess] = useState(1);
   const [counter, setCounter] = React.useState(0);
@@ -74,12 +75,14 @@ const NumberMemory: React.FC = () => {
   };
 
   React.useEffect(() => {
+    if (!activeGame) return;
+
     counter < 1 && setTimeout(() => setCounter(counter + 0.01), 20);
 
     if (counter >= 1) {
       setGameActive(2);
     }
-  }, [counter]);
+  }, [activeGame, counter]);
 
   if (gameActive === 1) {
     res = (
@@ -146,7 +149,13 @@ const NumberMemory: React.FC = () => {
   }
 
   return (
-    <GameTemplate name="Вербальная память" description="Узнайте насколько хороша ваша память." icon={icon}>
+    <GameTemplate
+      name="Вербальная память"
+      description="Узнайте насколько хороша ваша память."
+      icon={icon}
+      activeGame={activeGame}
+      setActiveGame={setActiveGame}
+    >
       <div className="round-main">{res}</div>
     </GameTemplate>
   );

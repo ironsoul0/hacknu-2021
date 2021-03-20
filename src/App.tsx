@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-import { DashboardPage, ReactionGame } from './components';
+import { DashboardPage, ReactionGame, ChimpGame } from './components';
 import NumberMemory from './components/NumberMemory/NumberMemory';
 
 const App: React.FC = () => (
@@ -18,6 +18,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/game/memory">
           <NumberMemory />
+        </Route>
+        <Route exact path="/game/chimp">
+          <ChimpGame />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

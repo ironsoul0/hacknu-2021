@@ -1,11 +1,17 @@
-import React, { cloneElement, FC, useState } from 'react';
+import React, { cloneElement, FC } from 'react';
 import clsx from 'clsx';
 
 import { Props } from './props';
 
-export const GameTemplate: FC<Props> = ({ name, description, className, children, icon }: Props) => {
-  const [activeGame, setActiveGame] = useState(false);
-
+export const GameTemplate: FC<Props> = ({
+  name,
+  description,
+  className,
+  children,
+  icon,
+  activeGame,
+  setActiveGame,
+}: Props) => {
   return (
     <div className={clsx(['h-screen flex items-center justify-center bg-blue-500 px-4 relative', className])}>
       {!activeGame && (

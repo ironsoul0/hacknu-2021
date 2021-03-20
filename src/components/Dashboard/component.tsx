@@ -11,7 +11,7 @@ const mockGames: GameCardProps[] = [
   },
   {
     name: 'Последовательная память',
-    id: 'sequence',
+    id: 'chimp',
     points: 55.2,
     percentile: 67.7,
   },
