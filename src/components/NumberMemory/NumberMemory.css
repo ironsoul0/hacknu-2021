@@ -1,30 +1,33 @@
 .round-main {
-  padding: 36px;
+  padding-top: 100px;
+  padding-left: 36px;
+  padding-right: 36px;
+  padding-bottom: 36px;
   text-align: center;
   background-color: cornflowerblue;
   height: 100vh;
 }
 
 .round-p-lg {
-  color: black;
+  color: white;
   font-size: 36px;
 }
 
 .round-p {
-  color: black;
+  color: white;
   font-size: 28px;
   font-weight: 500;
 }
 
 .round-p-sm {
-  color: black;
+  color: white;
   margin-top: 16px;
   font-size: 18px;
   font-weight: 500;
 }
 
 .round-level-p {
-  color: black;
+  color: white;
   font-size: 40px;
   font-weight: 500;
   margin-top: 36px;
@@ -45,6 +48,6 @@
 
 .round-number {
   margin-top: 64px;
-  font-size: 56px;
+  font-size: 42px;
   font-weight: 500;
 }
