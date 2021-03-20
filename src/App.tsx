@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import aituBridge from '@btsd/aitu-bridge';
+import StartGame from './components/StartGame/StartGame';
+import NumberMemory from './components/NumberMemory/NumberMemory';
 import { IonApp, IonContent, IonButton, IonText, IonHeader } from '@ionic/react';
+import gameIcon from './assets/img/num_memory.gif';
 
 import './App.css';
 
@@ -42,7 +45,19 @@ const App: React.FC = () => {
 
   const [name, setName] = useState('<username>');
 
-  return <div className="font-bold text-green-100">Kek</div>;
+  const startGame = () => {
+    console.log('gae');
+  };
+
+  return (
+    // <StartGame
+    //   title="Запоминание чисел"
+    //   description="По статистике, средний человек может запомнить не более 7 цифр. А вы сможете больше?"
+    //   image={gameIcon}
+    //   startButtonOnClick={startGame}
+    // />
+    <NumberMemory />
+  );
 };
 
 export default App;
