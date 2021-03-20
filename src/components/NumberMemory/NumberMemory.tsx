@@ -101,13 +101,23 @@ const NumberMemory: React.FC = () => {
   } else if (gameActive === 2) {
     res = (
       <>
+        <p className="animate-bounce" style={{ fontSize: 64, marginBottom: 36 }}>
+          {' '}
+          🧐{' '}
+        </p>
         <p className="round-p"> Какое было число? </p>
         <IonInput
-          style={{ marginTop: 36, backgroundColor: 'white', borderRadius: 8 }}
+          style={{ marginTop: 36, backgroundColor: 'white', borderRadius: 8, fontSize: 28 }}
           value={inputValue}
           onIonChange={handleInputChange}
         />
-        <IonButton style={{ marginTop: 36 }} expand="block" shape="round" onClick={sendUserInput}>
+        <IonButton
+          color="dark"
+          style={{ marginTop: 36, height: 48 }}
+          expand="block"
+          shape="round"
+          onClick={sendUserInput}
+        >
           Отправить
         </IonButton>
       </>
@@ -115,12 +125,16 @@ const NumberMemory: React.FC = () => {
   } else if (gameActive === 3) {
     res = (
       <>
+        <p className="animate-bounce round-p-lg" style={{ marginBottom: 36 }}>
+          {' '}
+          🎉 Ураааа 🎉{' '}
+        </p>
         <p className="round-p"> Число </p>
         <p className="round-p-lg"> {answer} </p>
         <p className="round-p"> Ваш ответ </p>
         <p className="round-p-lg"> {guess} </p>
-        <p className="round-level-p">Уровень {level}</p>
-        <IonButton expand="block" shape="round" onClick={callNextLevel}>
+        <p className="animate-pulse round-level-p">Уровень {level}</p>
+        <IonButton color="dark" style={{ height: 48 }} expand="block" shape="round" onClick={callNextLevel}>
           Следующий
         </IonButton>
       </>
@@ -128,6 +142,10 @@ const NumberMemory: React.FC = () => {
   } else {
     res = (
       <>
+        <p className="animate-bounce round-p-lg" style={{ marginBottom: 36 }}>
+          {' '}
+          👏👏👏{' '}
+        </p>
         <p className="round-p"> Число </p>
         <p className="round-p-lg"> {answer} </p>
         <p className="round-p"> Ваш ответ </p>
@@ -137,11 +155,17 @@ const NumberMemory: React.FC = () => {
         >
           {guess}
         </p>
-        <p className="round-level-p">Уровень {level}</p>
-        <IonButton expand="block" shape="round" onClick={() => history.push('/')}>
+        <p className="animate-pulse round-level-p">Уровень {level}</p>
+        <IonButton color="dark" style={{ height: 48 }} expand="block" shape="round" onClick={() => history.push('/')}>
           Вернуться
         </IonButton>
-        <IonButton expand="block" shape="round" onClick={restartGame}>
+        <IonButton
+          color="dark"
+          style={{ marginTop: 36, height: 48 }}
+          expand="block"
+          shape="round"
+          onClick={restartGame}
+        >
           Заново
         </IonButton>
       </>
