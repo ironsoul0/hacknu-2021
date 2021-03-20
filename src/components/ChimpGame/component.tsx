@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
+import { useHistory } from 'react-router';
 
 import { GameTemplate } from '../GameTemplate';
 import { ReactionIcon } from '../../core';
-import clsx from 'clsx';
 
 const icon = <ReactionIcon />;
 
@@ -17,6 +18,7 @@ const CELLS = 25;
 const MAX_STRIKES = 3;
 
 export const ChimpGame = () => {
+  const history = useHistory();
   const [activeGame, setActiveGame] = useState(false);
 
   const generatePuzzle = (cellsVisible: number): PuzzleState => {
@@ -33,7 +35,6 @@ export const ChimpGame = () => {
   };
 
   const [gameState, setGameState] = useState({
-    level: 1,
     mode: MODES.Question,
     strikes: 0,
     numbers: 4,
@@ -62,12 +63,29 @@ export const ChimpGame = () => {
     }
   };
 
+  const restartGame = () => {
+    setTarget(1);
+
+    setGameState({
+      mode: MODES.Question,
+      strikes: 0,
+      numbers: 4,
+      puzzle: generatePuzzle(4),
+    });
+  };
+
   const continueGame = () => {
+    setTarget(1);
+
     setGameState((gameState) => ({
       ...gameState,
       puzzle: generatePuzzle(gameState.numbers),
       mode: MODES.Question,
     }));
+  };
+
+  const saveGame = () => {
+    history.push('/');
   };
 
   return (
@@ -100,25 +118,45 @@ export const ChimpGame = () => {
           })}
         </div>
       )}
-      {gameState.mode === MODES.Question && (
-        <>
-          (gameState.strikes === MAX_STRIKES ? (
-          <div>
-            <h3>Score</h3>
-            <p>{gameState.level}</p>
-          </div>
+      {gameState.mode === MODES.Result && (
+        <div className="text-center text-white font-bold">
+          {gameState.strikes === MAX_STRIKES ? (
+            <div>
+              <h3 className="text-4xl">Чисел</h3>
+              <p className="text-5xl">{gameState.numbers}</p>
+              <h4 className="text-3xl mt-4">Сохраните ваш результат</h4>
+              <div className="mx-auto">
+                <button
+                  onClick={saveGame}
+                  className="focus:outline-none bg-yellow-300 text-black font-bold px-4 py-3 rounded mt-4"
+                >
+                  Сохранить
+                </button>
+                <button
+                  onClick={restartGame}
+                  className="focus:outline-none bg-gray-200 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
+                >
+                  Попробовать снова
+                </button>
+              </div>
+            </div>
           ) : (
-          <div>
-            <h3>Количество чисел</h3>
-            <p>{gameState.level}</p>
-            <h4>Штраф</h4>
-            <h4>
-              {gameState.strikes} из {MAX_STRIKES}
-            </h4>
-            <button onClick={continueGame}>Продолжить</button>
-          </div>
-          ))
-        </>
+            <div>
+              <h3 className="text-4xl">Чисел</h3>
+              <p className="text-5xl">{gameState.numbers}</p>
+              <h4 className="font-semibold text-3xl mt-4">Штраф</h4>
+              <h4 className="text-3xl">
+                {gameState.strikes} из {MAX_STRIKES}
+              </h4>
+              <button
+                onClick={continueGame}
+                className="focus:outline-none bg-yellow-300 text-black font-bold px-4 py-3 rounded mt-4"
+              >
+                Продолжить
+              </button>
+            </div>
+          )}
+        </div>
       )}
     </GameTemplate>
   );

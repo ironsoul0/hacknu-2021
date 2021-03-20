@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { GameCard, GameCardProps } from '../../components';
+import { useMe } from '../../hooks';
+import { GameCard, GameCardProps, Spinner } from '../../components';
 
 const mockGames: GameCardProps[] = [
   {
@@ -30,11 +31,13 @@ const mockGames: GameCardProps[] = [
 ];
 
 export const DashboardPage: React.FC = () => {
+  const me = useMe();
+
   return (
     <div className="px-4 pt-5">
       <p className="text-lg text-gray-500">Игрок</p>
       <p className="font-bold text-4xl mb-10">Краучиха</p>
-      {mockGames.map((game, i) => (
+      {mockGames.map((game) => (
         <GameCard key={game.id} {...game} className="mb-6" />
       ))}
     </div>
