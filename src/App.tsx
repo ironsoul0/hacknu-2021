@@ -4,9 +4,10 @@ import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 import { DashboardPage, ReactionGame } from './components';
+import NumberMemory from './components/NumberMemory/NumberMemory';
 
 const App: React.FC = () => (
-  <IonApp>
+  <IonApp className="max-w-md mx-auto">
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/">
@@ -14,6 +15,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/game/reaction">
           <ReactionGame />
+        </Route>
+        <Route exact path="/game/memory">
+          <NumberMemory />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

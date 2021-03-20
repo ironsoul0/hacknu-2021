@@ -2,14 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { IonApp, IonContent, IonButton, IonProgressBar, IonText, IonHeader, IonInput } from '@ionic/react';
 import { Link, RouteComponentProps, useHistory } from 'react-router-dom';
 import './NumberMemory.css';
+import { GameTemplate } from '../../components';
+import { NumberMemoryIcon } from '../../core';
+
+const icon = <NumberMemoryIcon />;
 
 const NumberMemory: React.FC = () => {
-  const [gameActive, setGameActive] = useState(1);
   const [level, setLevel] = useState(1);
   const [guess, setGuess] = useState(1);
-  const [answer, setAnswer] = useState(1);
   const [counter, setCounter] = React.useState(0);
   const [inputValue, setInputValue] = React.useState('');
+
+  const getRandomInt = (min: number, max: number) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const [gameActive, setGameActive] = useState(1);
+  const [answer, setAnswer] = useState(getRandomInt(Math.pow(10, 1), Math.pow(10, 2)));
+
+  const restartGame = () => {
+    setCounter(0);
+    setLevel(1);
+    setGuess(1);
+    setAnswer(getRandomInt(Math.pow(10, 1), Math.pow(10, 2)));
+    setInputValue('');
+    setGameActive(1);
+  };
 
   let res;
   const history = useHistory();
@@ -45,12 +65,6 @@ const NumberMemory: React.FC = () => {
     }
   };
 
-  const getRandomInt = (min: number, max: number) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
   const callNextLevel = () => {
     setLevel(level + 1);
     const randNumber = getRandomInt(Math.pow(10, level), Math.pow(10, level + 1));
@@ -69,7 +83,7 @@ const NumberMemory: React.FC = () => {
 
   if (gameActive === 1) {
     res = (
-      <div className="round-main">
+      <>
         <div>
           <p className="round-number" style={{ color: 'white' }}>
             {' '}
@@ -79,11 +93,11 @@ const NumberMemory: React.FC = () => {
         <div className="round-progress">
           <IonProgressBar value={counter} reversed></IonProgressBar>
         </div>
-      </div>
+      </>
     );
   } else if (gameActive === 2) {
     res = (
-      <div className="round-main">
+      <>
         <p className="round-p"> Какое было число? </p>
         <IonInput
           style={{ marginTop: 36, backgroundColor: 'white', borderRadius: 8 }}
@@ -93,11 +107,11 @@ const NumberMemory: React.FC = () => {
         <IonButton style={{ marginTop: 36 }} expand="block" shape="round" onClick={sendUserInput}>
           Отправить
         </IonButton>
-      </div>
+      </>
     );
   } else if (gameActive === 3) {
     res = (
-      <div className="round-main">
+      <>
         <p className="round-p"> Число </p>
         <p className="round-p-lg"> {answer} </p>
         <p className="round-p"> Ваш ответ </p>
@@ -106,11 +120,11 @@ const NumberMemory: React.FC = () => {
         <IonButton expand="block" shape="round" onClick={callNextLevel}>
           Следующий
         </IonButton>
-      </div>
+      </>
     );
   } else {
     res = (
-      <div className="round-main">
+      <>
         <p className="round-p"> Число </p>
         <p className="round-p-lg"> {answer} </p>
         <p className="round-p"> Ваш ответ </p>
@@ -124,14 +138,18 @@ const NumberMemory: React.FC = () => {
         <IonButton expand="block" shape="round" onClick={() => history.push('/')}>
           Вернуться
         </IonButton>
-        <IonButton expand="block" shape="round" onClick={() => history.push('/startGame')}>
+        <IonButton expand="block" shape="round" onClick={restartGame}>
           Заново
         </IonButton>
-      </div>
+      </>
     );
   }
 
-  return res;
+  return (
+    <GameTemplate name="Вербальная память" description="Узнайте насколько хороша ваша память." icon={icon}>
+      <div className="round-main">{res}</div>
+    </GameTemplate>
+  );
 };
 
 export default NumberMemory;

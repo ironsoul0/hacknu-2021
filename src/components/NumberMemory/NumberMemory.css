@@ -1,11 +1,6 @@
 .round-main {
-  padding-top: 100px;
-  padding-left: 36px;
-  padding-right: 36px;
-  padding-bottom: 36px;
   text-align: center;
-  background-color: cornflowerblue;
-  height: 100vh;
+  width: 100%;
 }
 
 .round-p-lg {
@@ -47,7 +42,6 @@
 }
 
 .round-number {
-  margin-top: 64px;
   font-size: 42px;
   font-weight: 500;
 }
