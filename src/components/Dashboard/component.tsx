@@ -15,6 +15,18 @@ const mockGames: GameCardProps[] = [
     points: 55.2,
     percentile: 67.7,
   },
+  {
+    name: 'Вербальная память',
+    id: 'memory',
+    points: 115.2,
+    percentile: 25.7,
+  },
+  {
+    name: 'Последовательная память',
+    id: 'sequence',
+    points: 55.2,
+    percentile: 67.7,
+  },
 ];
 
 export const DashboardPage: React.FC = () => {
