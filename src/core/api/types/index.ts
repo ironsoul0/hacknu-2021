@@ -4,3 +4,4 @@ export * from './GetMeResponse';
 export * from './ErrorResponse';
 export * from './GameType';
 export * from './UpdateScoreResponse';
+export * from './UserGameInfo';

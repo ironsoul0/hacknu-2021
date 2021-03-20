@@ -1,8 +1,5 @@
 import { HTMLAttributes } from 'react';
 
-export type Props = HTMLAttributes<HTMLDivElement> & {
-  name: string;
-  id: string;
-  points?: number;
-  percentile?: number;
-};
+import { UserGameInfo } from '../../core';
+
+export type Props = HTMLAttributes<HTMLDivElement> & UserGameInfo;

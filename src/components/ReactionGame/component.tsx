@@ -63,19 +63,19 @@ export const ReactionGame = () => {
   let gameBody;
   if (roundState == 0) {
     gameBody = (
-      <div className="text-center">
+      <div className="text-center px-4">
         <h2 className="font-bold text-2xl text-white fade">Приготовьтесь к зелёному экрану...</h2>
       </div>
     );
   } else if (roundState == 1) {
     gameBody = (
-      <div className="text-center">
+      <div className="text-center px-4">
         <h2 className="font-bold text-2xl text-white fade">Нажимайте на экран!</h2>
       </div>
     );
   } else if (roundState == 2) {
     gameBody = (
-      <div className="text-center">
+      <div className="text-center px-4">
         {falseStart && (
           <>
             <h2 className="font-bold text-2xl text-white fade">Фальш старт! Дождитесь появления зеленого экрана.</h2>
@@ -92,7 +92,7 @@ export const ReactionGame = () => {
     );
   } else if (roundState == 3) {
     gameBody = (
-      <div className="text-center">
+      <div className="text-center px-4">
         <h2 className="font-bold text-2xl text-white fade">Ваш результат: {lastScore} милисекунд. </h2>
         <h2 className="font-bold text-3xl text-white fade">
           Ваше среднее время реакции: {sumScore / NUM_ROUND} милисекунд.{' '}
