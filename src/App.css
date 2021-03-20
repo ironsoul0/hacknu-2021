@@ -21,3 +21,7 @@ ion-slides {
   padding: 0 16px 27px;
   width: 100%;
 }
+
+body {
+  background-color: white;
+}
