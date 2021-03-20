@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: rgb(230, 232, 243);
+  font-family: 'Roboto', sans-serif;
+  color: black;
+}
