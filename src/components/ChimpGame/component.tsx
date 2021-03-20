@@ -95,6 +95,7 @@ export const ChimpGame = () => {
       icon={icon}
       activeGame={activeGame}
       setActiveGame={setActiveGame}
+      className="px-4"
     >
       {gameState.mode === MODES.Question && (
         <div className="grid grid-cols-5 grid-rows-5 w-full gap-2">

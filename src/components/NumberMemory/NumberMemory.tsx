@@ -155,6 +155,7 @@ const NumberMemory: React.FC = () => {
       icon={icon}
       activeGame={activeGame}
       setActiveGame={setActiveGame}
+      className="mx-4"
     >
       <div className="round-main">{res}</div>
     </GameTemplate>
