@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { IonApp, IonContent, IonButton, IonProgressBar, IonText, IonHeader, IonInput } from '@ionic/react';
-import { Link, RouteComponentProps, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { IonButton, IonInput, IonProgressBar } from '@ionic/react';
+import { useHistory } from 'react-router-dom';
 import './NumberMemory.css';
+import { useMe } from '../../hooks';
 import { GameTemplate } from '../../components';
-import { NumberMemoryIcon } from '../../core';
+import { GameType, NumberMemoryIcon, updateScore } from '../../core';
+import aituBridge from '@btsd/aitu-bridge';
 
 const icon = <NumberMemoryIcon />;
 
 const NumberMemory: React.FC = () => {
+  const me = useMe();
   const [activeGame, setActiveGame] = useState(false);
   const [level, setLevel] = useState(1);
   const [guess, setGuess] = useState(1);
@@ -61,6 +64,7 @@ const NumberMemory: React.FC = () => {
       // // const inCorrectString = ans.substring(0, id) + ;
       // setIncorrectGuess(crossed);
       setGameActive(4);
+      if (me) updateScore(me.id, GameType.numberMemory, level);
     } else {
       setGameActive(3);
     }
@@ -72,6 +76,10 @@ const NumberMemory: React.FC = () => {
     setAnswer(randNumber);
     setGameActive(1);
     setCounter(0);
+  };
+
+  const returnToHomePage = () => {
+    history.push('/');
   };
 
   React.useEffect(() => {
@@ -110,16 +118,14 @@ const NumberMemory: React.FC = () => {
           style={{ marginTop: 36, backgroundColor: 'white', borderRadius: 8, fontSize: 28 }}
           value={inputValue}
           onIonChange={handleInputChange}
+          type="number"
         />
-        <IonButton
-          color="dark"
-          style={{ marginTop: 36, height: 48 }}
-          expand="block"
-          shape="round"
+        <button
           onClick={sendUserInput}
+          className="focus:outline-none bg-yellow-300 text-black font-bold px-4 py-3 rounded mt-4 block mx-auto"
         >
           Отправить
-        </IonButton>
+        </button>
       </>
     );
   } else if (gameActive === 3) {
@@ -156,25 +162,27 @@ const NumberMemory: React.FC = () => {
           {guess}
         </p>
         <p className="animate-pulse round-level-p">Уровень {level}</p>
-        <IonButton color="dark" style={{ height: 48 }} expand="block" shape="round" onClick={() => history.push('/')}>
-          Вернуться
-        </IonButton>
-        <IonButton
-          color="dark"
-          style={{ marginTop: 36, height: 48 }}
-          expand="block"
-          shape="round"
-          onClick={restartGame}
+        <div className="mx-auto">
+          <button
+            onClick={restartGame}
+            className="focus:outline-none bg-yellow-300 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
+          >
+            Попробовать снова
+          </button>
+        </div>
+        <button
+          onClick={returnToHomePage}
+          className="focus:outline-none bg-gray-200 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
         >
-          Заново
-        </IonButton>
+          Вернуться в меню
+        </button>
       </>
     );
   }
 
   return (
     <GameTemplate
-      name="Вербальная память"
+      name="Числовая память"
       description="Узнайте насколько хороша ваша память."
       icon={icon}
       activeGame={activeGame}

@@ -1,9 +1,10 @@
-import React, { cloneElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import clsx from 'clsx';
+import { useHistory } from 'react-router-dom';
 
 import { GameTemplate } from '../GameTemplate';
-import { ReactionIcon } from '../../core';
-import { IonProgressBar } from '@ionic/react';
-import { information, timer } from 'ionicons/icons';
+import { GameType, ReactionIcon, updateScore } from '../../core';
+import { useMe } from '../../hooks';
 
 const MIN_COUNT_DOWN = 2000;
 const MAX_COUNT_DOWN = 4000;
@@ -11,6 +12,8 @@ const NUM_ROUND = 4;
 const icon = <ReactionIcon />;
 
 export const ReactionGame = () => {
+  const me = useMe();
+  const history = useHistory();
   const [activeGame, setActiveGame] = useState(false);
 
   const [roundState, setRoundState] = useState(-1);
@@ -60,6 +63,23 @@ export const ReactionGame = () => {
     }
   };
 
+  useEffect(() => {
+    if (roundState === 3) {
+      if (me) updateScore(me.id, GameType.reactionTime, sumScore / NUM_ROUND);
+    }
+  }, [roundState]);
+
+  const returnToHomePage = () => {
+    history.push('/');
+  };
+
+  const restartGame = () => {
+    setRoundState(0);
+    setSumScore(0);
+    setLevel(1);
+    setLastScore(0);
+  };
+
   let gameBody;
   if (roundState == 0) {
     gameBody = (
@@ -94,9 +114,23 @@ export const ReactionGame = () => {
     gameBody = (
       <div className="text-center px-4">
         <h2 className="font-bold text-2xl text-white fade">Ваш результат: {lastScore} милисекунд. </h2>
-        <h2 className="font-bold text-3xl text-white fade">
+        <h2 className="font-bold text-3xl text-white fade mt-3">
           Ваше среднее время реакции: {sumScore / NUM_ROUND} милисекунд.{' '}
         </h2>
+        <div className="mx-auto">
+          <button
+            onClick={restartGame}
+            className="focus:outline-none  bg-yellow-300 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
+          >
+            Попробовать снова
+          </button>
+        </div>
+        <button
+          onClick={returnToHomePage}
+          className="focus:outline-none bg-gray-200 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
+        >
+          Вернуться в меню
+        </button>
       </div>
     );
   }
@@ -108,6 +142,7 @@ export const ReactionGame = () => {
       icon={icon}
       activeGame={activeGame}
       setActiveGame={setActiveGame}
+      className={clsx([!activeGame && 'px-4'])}
     >
       {roundState != 1 && (
         <div className="h-screen w-full flex items-center justify-center bg-yellow-500" onClick={() => handleClick()}>

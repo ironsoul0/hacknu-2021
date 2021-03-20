@@ -3,9 +3,10 @@ import clsx from 'clsx';
 import { useHistory } from 'react-router';
 
 import { GameTemplate } from '../GameTemplate';
-import { ReactionIcon } from '../../core';
+import { ChimpIcon, GameType, updateScore } from '../../core';
+import { useMe } from '../../hooks';
 
-const icon = <ReactionIcon />;
+const icon = <ChimpIcon />;
 
 enum MODES {
   Question,
@@ -18,6 +19,7 @@ const CELLS = 25;
 const MAX_STRIKES = 3;
 
 export const ChimpGame = () => {
+  const me = useMe();
   const history = useHistory();
   const [activeGame, setActiveGame] = useState(false);
 
@@ -45,6 +47,10 @@ export const ChimpGame = () => {
 
   const handleClick = (valueClicked: number) => {
     if (valueClicked !== target) {
+      if (gameState.strikes + 1 === MAX_STRIKES) {
+        if (me) updateScore(me.id, GameType.reactionTime, gameState.numbers);
+      }
+
       setGameState((gameState) => ({
         ...gameState,
         mode: MODES.Result,
@@ -84,7 +90,7 @@ export const ChimpGame = () => {
     }));
   };
 
-  const saveGame = () => {
+  const returnToHomePage = () => {
     history.push('/');
   };
 
@@ -125,21 +131,20 @@ export const ChimpGame = () => {
             <div>
               <h3 className="text-4xl">Чисел</h3>
               <p className="text-5xl">{gameState.numbers}</p>
-              <h4 className="text-3xl mt-4">Сохраните ваш результат</h4>
               <div className="mx-auto">
                 <button
-                  onClick={saveGame}
-                  className="focus:outline-none bg-yellow-300 text-black font-bold px-4 py-3 rounded mt-4"
-                >
-                  Сохранить
-                </button>
-                <button
                   onClick={restartGame}
-                  className="focus:outline-none bg-gray-200 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
+                  className="focus:outline-none bg-yellow-300 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
                 >
                   Попробовать снова
                 </button>
               </div>
+              <button
+                onClick={returnToHomePage}
+                className="focus:outline-none bg-gray-200 text-black font-bold px-4 py-3 rounded mt-4 ml-3"
+              >
+                Вернуться в меню
+              </button>
             </div>
           ) : (
             <div>

@@ -1,5 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, RefAttributes } from 'react';
 
 import { UserGameInfo } from '../../core';
 
-export type Props = HTMLAttributes<HTMLDivElement> & UserGameInfo;
+export type Props = HTMLAttributes<HTMLDivElement> & UserGameInfo & RefAttributes<HTMLDivElement>;

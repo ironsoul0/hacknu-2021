@@ -1,6 +1,8 @@
 import React, { cloneElement, FC } from 'react';
 import clsx from 'clsx';
+import { useHistory } from 'react-router-dom';
 
+import { CrossIcon } from '../../core';
 import { Props } from './props';
 
 export const GameTemplate: FC<Props> = ({
@@ -12,8 +14,17 @@ export const GameTemplate: FC<Props> = ({
   activeGame,
   setActiveGame,
 }: Props) => {
+  const history = useHistory();
+
+  const closeGame = () => {
+    history.push('/');
+  };
+
   return (
     <div className={clsx(['h-screen flex items-center justify-center bg-blue-500 relative', className])}>
+      <div className="absolute top-3 right-3 w-10 text-white z-30" onClick={closeGame}>
+        <CrossIcon />
+      </div>
       {!activeGame && (
         <>
           <div className="text-center animate-smooth-appear">
