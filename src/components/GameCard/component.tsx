@@ -12,7 +12,7 @@ export const GameCard: FC<Props> = ({ name, id, percentile, points, className }:
     <div className={clsx('flex justify-between items-center gap-x-4', className)}>
       <div className="flex-1">
         <p className="font-bold text-md mb-3">{name}</p>
-        <Link to="/" className="text-blue-500 font-medium flex items-center">
+        <Link to={`/game/${id}`} className="text-blue-500 font-medium flex items-center">
           <PlayIcon className="w-5" />
           <p className="ml-1.5">Играть</p>
         </Link>

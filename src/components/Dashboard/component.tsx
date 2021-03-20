@@ -5,7 +5,7 @@ import { GameCard, GameCardProps } from '../../components';
 const mockGames: GameCardProps[] = [
   {
     name: 'Вербальная память',
-    id: 'memory',
+    id: 'reaction',
     points: 115.2,
     percentile: 25.7,
   },
