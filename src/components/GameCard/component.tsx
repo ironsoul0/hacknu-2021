@@ -15,7 +15,7 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
             <PlayIcon className="w-5" />
             <p className="ml-1.5">Играть</p>
           </Link>
-          <Link to="/" className="text-blue-500 font-medium flex items-center">
+          <Link to={`/leaderboard/${id}`} className="text-blue-500 font-medium flex items-center">
             <ChartIcon className="w-5" />
             <p className="ml-1.5">Статистика</p>
           </Link>

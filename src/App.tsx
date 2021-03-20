@@ -16,7 +16,7 @@ const App: React.FC = () => (
           <Route exact path="/">
             <DashboardPage />
           </Route>
-          <Route exact path="/leaderboard">
+          <Route exact path="/leaderboard/:type">
             <LeaderboardPage />
           </Route>
           <Route exact path={`/game/${GameType.reactionTime}`}>

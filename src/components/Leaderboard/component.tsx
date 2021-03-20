@@ -1,8 +1,11 @@
 import React, { HTMLAttributes } from 'react';
-
+import { useParams } from 'react-router';
 import clsx from 'clsx';
+import { useHistory } from 'react-router-dom';
 
-import { useMe } from '../../hooks';
+import { useLeaderboard, useMe } from '../../hooks';
+import { CrossIcon, GameType } from '../../core';
+import { Spinner } from '../../components';
 
 type UserRowProps = HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -14,40 +17,6 @@ type UserRowProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 const default_avatar = 'https://pwco.com.sg/wp-content/uploads/2020/05/Generic-Profile-Placeholder-v3.png';
-
-const mockLeaderboard: UserRowProps[] = [
-  {
-    name: 'Темиржан',
-    lastname: 'Юсупов',
-    id: '12345678999999999999999999999999',
-    score: 115.2,
-    avatar:
-      'https://www.vettedpetcare.com/vetted-blog/wp-content/uploads/2017/09/How-To-Travel-With-a-Super-Anxious-Cat-square.jpeg',
-  },
-  {
-    name: 'Санжар',
-    lastname: 'Бидайбек',
-    id: '12345678999999999999999999999999',
-    score: 115.2,
-    avatar:
-      'https://www.vettedpetcare.com/vetted-blog/wp-content/uploads/2017/09/How-To-Travel-With-a-Super-Anxious-Cat-square.jpeg',
-  },
-  {
-    name: 'dfdffdfdffd',
-    lastname: 'Юсупов',
-    id: '12345678999999999999999999999999',
-    score: 11.2,
-    avatar:
-      'https://www.vettedpetcare.com/vetted-blog/wp-content/uploads/2017/09/How-To-Travel-With-a-Super-Anxious-Cat-square.jpeg',
-  },
-  {
-    name: 'Санжар',
-    lastname: 'Бидайбек',
-    id: '12345678999999999999999999999999',
-    score: 1.2,
-    avatar: '',
-  },
-];
 
 const UserRow: React.FC<any> = ({ name, lastname, id, score, avatar, className, index }: any) => {
   return (
@@ -78,15 +47,34 @@ const UserRow: React.FC<any> = ({ name, lastname, id, score, avatar, className, 
   );
 };
 
+type RouteParams = {
+  type: string;
+};
+
 export const LeaderboardPage: React.FC = () => {
-  const me = useMe();
+  const { type } = useParams<RouteParams>();
+  const leaderboard = useLeaderboard(type as GameType);
+  const history = useHistory();
+
+  const closeGame = () => {
+    history.push('/');
+  };
 
   return (
-    <div className="px-4 pt-5">
-      <p className="font-black text-xl mb-10 mx-2">Результаты контактов</p>
-      {mockLeaderboard.map((user, index) => (
-        <UserRow key={user.id} {...user} index={index} className="mb-6" />
-      ))}
+    <div className="px-4 pt-5 relative">
+      {leaderboard ? (
+        <>
+          <div className="absolute top-5 right-4 w-8 text-black z-30" onClick={closeGame}>
+            <CrossIcon />
+          </div>
+          <p className="font-black text-xl mb-10 mx-2">Результаты контактов</p>
+          {leaderboard.map((user, index) => (
+            <UserRow key={user.id} {...user} index={index} className="mb-6" />
+          ))}
+        </>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 };

@@ -48,7 +48,7 @@ export const ChimpGame = () => {
   const handleClick = (valueClicked: number) => {
     if (valueClicked !== target) {
       if (gameState.strikes + 1 === MAX_STRIKES) {
-        if (me) updateScore(me.id, GameType.reactionTime, gameState.numbers);
+        if (me) updateScore(me.id, GameType.chimpTest, gameState.numbers);
       }
 
       setGameState((gameState) => ({

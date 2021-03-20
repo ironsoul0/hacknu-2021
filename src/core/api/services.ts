@@ -1,6 +1,13 @@
 import axios, { AxiosPromise } from 'axios';
 
-import { CreateUserResponse, GameType, GetScoresResponse, UpdateScoreResponse } from './types';
+import {
+  CreateUserResponse,
+  GameType,
+  GetScoresResponse,
+  UpdateScoreResponse,
+  LeaderboardResponse,
+  ContactsResponse,
+} from './types';
 
 export const base = 'https://aitu-human-benchmark.herokuapp.com/';
 
@@ -16,4 +23,14 @@ export const getScores = (id: string): AxiosPromise<GetScoresResponse> => api.ge
 export const updateScore = (id: string, game: GameType, newScore: number): AxiosPromise<UpdateScoreResponse> =>
   api.post(`users/${id}/scores/`, {
     [game]: newScore,
+  });
+
+export const getLeaderboard = (
+  id: string,
+  gameName: GameType,
+  contacts: ContactsResponse,
+): AxiosPromise<LeaderboardResponse> =>
+  api.post(`users/${id}/leaderboard/`, {
+    gameName,
+    contacts,
   });

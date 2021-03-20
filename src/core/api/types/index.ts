@@ -5,3 +5,5 @@ export * from './ErrorResponse';
 export * from './GameType';
 export * from './UpdateScoreResponse';
 export * from './UserGameInfo';
+export * from './LeaderboardResponse';
+export * from './ContactsResponse';
