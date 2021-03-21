@@ -6,6 +6,7 @@ import './NumberMemory.css';
 import { useMe } from '../../hooks';
 import { GameTemplate } from '../../components';
 import { GameType, NumberMemoryIcon, updateScore } from '../../core';
+import clsx from 'clsx';
 
 const icon = <NumberMemoryIcon />;
 
@@ -76,11 +77,16 @@ const NumberMemory: React.FC = () => {
     }
   }, [activeGame, counter]);
 
+  const getCorrectTextSize = () => {
+    const size = Math.max(8 - Math.max(level - 5, 0), 4);
+    return `text-${size}xl`;
+  };
+
   if (gameActive === 1) {
     res = (
       <>
         <div>
-          <p className="text-8xl mb-7" style={{ color: 'white' }}>
+          <p className={clsx([getCorrectTextSize(), 'mb-7'])} style={{ color: 'white' }}>
             {' '}
             {answer}{' '}
           </p>
