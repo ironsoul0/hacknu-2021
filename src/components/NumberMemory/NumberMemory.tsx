@@ -77,27 +77,24 @@ const NumberMemory: React.FC = () => {
     }
   }, [activeGame, counter]);
 
-  const generateSizes = () => {
-    return new Array(5)
-      .fill(0)
-      .map((_, i) => `text-${i + 4}xl`)
-      .join(' ');
-  };
-
-  const getCorrectTextSize = () => {
-    const size = Math.max(8 - Math.max(level - 5, 0), 4).toFixed(0);
-    return `text-${size}xl`;
-  };
-
   if (gameActive === 1) {
     res = (
       <>
         <div>
-          <p className={clsx([getCorrectTextSize(), 'mb-7'])} style={{ color: 'white' }}>
+          <p
+            className={clsx([
+              level <= 5 && 'text-8xl',
+              level === 6 && 'text-7xl',
+              level === 7 && 'text-6xl',
+              level === 8 && 'text-5xl',
+              level > 8 && 'text-4xl',
+              'mb-7',
+            ])}
+            style={{ color: 'white' }}
+          >
             {' '}
             {answer}{' '}
           </p>
-          <p className={clsx([generateSizes(), 'hidden'])} />
         </div>
         <div className="round-progress">
           <IonProgressBar value={counter} reversed></IonProgressBar>
