@@ -1,6 +1,7 @@
 import React, { FC, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import aituBridge from '@btsd/aitu-bridge';
 
 import { PlayIcon, ChartIcon, ChimpIcon, ShareIcon, NumberMemoryIcon, AlarmIcon, GameType } from '../../core';
 import { Props } from './props';
@@ -11,6 +12,16 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
       reactionTime: <AlarmIcon className="w-32 p-3" />,
       numberMemory: <NumberMemoryIcon className="w-32 p-2" />,
       chimpTest: <ChimpIcon className="w-32" />,
+    };
+
+    const shareInfo = async () => {
+      const text = [
+        points ? `Мой рекорд в мини-игре "${name}" это ${points} ${unit}` : `Привет! Нашел очень крутое приложение.`,
+        'Мини-приложение Aitu IQ позволяет очень легко и весело измерять способности мозга в увлекательной и соревновательной форме!',
+        'Скорее переходи по ссылке и присоединяйся ;)',
+      ].join('\n\n');
+
+      await aituBridge.share(text);
     };
 
     return (
@@ -60,9 +71,9 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
           </div>
           <div className="col-span-3 flex justify-begin">
             <div className="bg-gray-100 rounded-full flex justify-center items-center p-3 mx-2 my-auto shadow-sm">
-              <Link to={`/leaderboard/${id}`} className="text-blue-500 text-xl font-medium flex items-center">
+              <div onClick={shareInfo} className="text-blue-500 text-xl font-medium flex items-center">
                 <ShareIcon className="w-8" />
-              </Link>
+              </div>
             </div>
           </div>
         </div>
