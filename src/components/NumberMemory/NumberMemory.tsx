@@ -77,6 +77,13 @@ const NumberMemory: React.FC = () => {
     }
   }, [activeGame, counter]);
 
+  const generateSizes = () => {
+    return new Array(5)
+      .fill(0)
+      .map((_, i) => `text-${i + 4}xl`)
+      .join(' ');
+  };
+
   const getCorrectTextSize = () => {
     const size = Math.max(8 - Math.max(level - 5, 0), 4).toFixed(0);
     return `text-${size}xl`;
@@ -90,6 +97,7 @@ const NumberMemory: React.FC = () => {
             {' '}
             {answer}{' '}
           </p>
+          <p className={clsx([generateSizes(), 'hidden'])} />
         </div>
         <div className="round-progress">
           <IonProgressBar value={counter} reversed></IonProgressBar>
