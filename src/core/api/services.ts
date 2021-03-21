@@ -28,9 +28,9 @@ export const updateScore = (id: string, game: GameType, newScore: number): Axios
 export const getLeaderboard = (
   id: string,
   gameName: GameType,
-  contacts: ContactsResponse,
+  contactsData: ContactsResponse,
 ): AxiosPromise<LeaderboardResponse> =>
   api.post(`users/${id}/leaderboard/`, {
     gameName,
-    contacts,
+    contacts: contactsData,
   });

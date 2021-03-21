@@ -12,7 +12,10 @@ export const useLeaderboard = (gameName: GameType) => {
     let contacts: ContactsResponse = [];
 
     try {
-      contacts = (await aituBridge.getContacts()).contacts;
+      const result = await aituBridge.getContacts();
+      if (result.contacts && result.contacts.length > 0) {
+        contacts = [...result.contacts];
+      }
     } catch (e) {
       console.log(e);
     }
@@ -20,7 +23,7 @@ export const useLeaderboard = (gameName: GameType) => {
     try {
       const { data: leaderboard } = await getLeaderboard(id, gameName, contacts);
       setLeaderboard(leaderboard);
-    } catch {
+    } catch (e) {
       setLeaderboard([]);
     }
   };
