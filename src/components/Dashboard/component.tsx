@@ -23,17 +23,19 @@ export const DashboardPage: React.FC = () => {
     <div className="px-4 pt-5">
       {me && games ? (
         <>
-          <div className="flex animate-smooth-appear">
+          <div className="flex flex-col animate-smooth-appear">
+            <div className="mx-auto mb-2">
+              <p className="text-md text-gray-500">Игрок</p>
+            </div>
             <div
-              className="bg-gray-300 rounded-full h-16 w-16 mr-2"
+              className="bg-gray-300 rounded-full h-20 w-20 mx-auto mb-2"
               style={{
                 backgroundImage: 'url(' + (me.avatar ? me.avatar : default_avatar) + ')',
                 backgroundSize: 'cover',
               }}
             />
-            <div className="mx-2">
-              <p className="text-lg text-gray-500">Игрок</p>
-              <p className="font-bold text-4xl mb-10">{me.name}</p>
+            <div className="mx-auto">
+              <p className="font-bold text-3xl mb-10">{me.name + ' ' + me.lastname}</p>
             </div>
           </div>
           <div className="animate-smooth-appear">

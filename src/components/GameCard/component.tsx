@@ -8,14 +8,14 @@ import { Props } from './props';
 export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
   ({ name, id, percentile, points, unit, className }: Props, ref) => {
     const gameIcons = {
-      reactionTime: <AlarmIcon className="w-28" />,
-      numberMemory: <NumberMemoryIcon className="w-28" />,
+      reactionTime: <AlarmIcon className="w-32 p-3" />,
+      numberMemory: <NumberMemoryIcon className="w-32 p-2" />,
       chimpTest: <ChimpIcon className="w-32" />,
     };
 
     return (
       <div className={clsx('flex flex-col justify-between gap-x-4', className)} ref={ref}>
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 mb-3">
           <div className="col-span-6 flex justify-center">{gameIcons[id as GameType]}</div>
           <div className="col-span-6 flex flex-col justify-center mx-5">
             <div className="flex flex-col justify-center">
@@ -24,7 +24,7 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
             <div className="flex flex-col">
               <div className="flex">
                 <p className="font-bold text-4xl">{points?.toFixed(0) || '?'}</p>
-                <p className="self-end text-lg ml-0.5">{points ? unit : ''}</p>
+                <p className="self-end text-lg ml-1.5">{points ? unit : ''}</p>
               </div>
               <div className="bg-gray-300 h-8 w-100 relative flex items-center">
                 <div className="absolute bg-blue-500 h-8 flex items-center" style={{ width: `${percentile}%` }}>
