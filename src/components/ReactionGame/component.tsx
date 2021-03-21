@@ -138,7 +138,7 @@ export const ReactionGame = () => {
   return (
     <GameTemplate
       name="Тест на реакцию"
-      description="Нажимайте на экран как только жёлтый цвет сменится на зелёный. Кликните для старта."
+      description="Нажимайте на экран как только жёлтый цвет сменится на зелёный."
       icon={icon}
       activeGame={activeGame}
       setActiveGame={setActiveGame}
