@@ -6,6 +6,6 @@ export enum GameType {
 
 export const gameTypes = [
   { id: GameType.reactionTime, name: 'Время реакции', unit: 'мс.' },
-  { id: GameType.numberMemory, name: 'Числовая память', unit: 'урв.' },
+  { id: GameType.numberMemory, name: 'Память', unit: 'урв.' },
   { id: GameType.chimpTest, name: 'Тест Шимпанзе', unit: 'урв.' },
 ];

@@ -31,7 +31,7 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
           <div className="col-span-6 flex justify-center">{gameIcons[id as GameType]}</div>
           <div className="col-span-6 flex flex-col justify-center mx-5">
             <div className="flex flex-col justify-center">
-              <p className="font-black text-lg whitespace-nowrap">{name}</p>
+              <p className="font-black text-lg">{name}</p>
             </div>
             <div className="flex flex-col">
               <div className="flex">
