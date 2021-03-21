@@ -51,17 +51,17 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
               </Link>
             </div>
           </div>
-          <div className="col-span-3 flex justify-center">
-            <div className="container bg-gray-100 rounded-full flex justify-center items-center mx-3 p-3 shadow-sm">
+          <div className="col-span-3 flex justify-end">
+            <div className="bg-gray-100 rounded-full flex justify-center items-center p-3 mx-2 my-auto shadow-sm">
               <Link to={`/leaderboard/${id}`} className="text-blue-500 text-xl font-medium flex items-center">
-                <ChartIcon className="w-7" />
+                <ChartIcon className="w-8" />
               </Link>
             </div>
           </div>
-          <div className="col-span-3 flex justify-center">
-            <div className="container bg-gray-100 rounded-full flex justify-center items-center mx-3 p-3 shadow-sm">
+          <div className="col-span-3 flex justify-begin">
+            <div className="bg-gray-100 rounded-full flex justify-center items-center p-3 mx-2 my-auto shadow-sm">
               <Link to={`/leaderboard/${id}`} className="text-blue-500 text-xl font-medium flex items-center">
-                <ShareIcon className="w-7" />
+                <ShareIcon className="w-8" />
               </Link>
             </div>
           </div>
