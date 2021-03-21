@@ -32,5 +32,5 @@ export const getLeaderboard = (
 ): AxiosPromise<LeaderboardResponse> =>
   api.post(`users/${id}/leaderboard/`, {
     gameName,
-    contacts: contactsData,
+    contacts: contactsData || [],
   });
