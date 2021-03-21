@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import aituBridge from '@btsd/aitu-bridge';
 
-import { getLeaderboard, LeaderboardResponse, GameType } from '../core';
+import { getLeaderboard, LeaderboardResponse, GameType, ContactsResponse } from '../core';
 import { useMe } from './useMe';
 
 export const useLeaderboard = (gameName: GameType) => {
@@ -9,7 +9,14 @@ export const useLeaderboard = (gameName: GameType) => {
   const [leaderboard, setLeaderboard] = useState<LeaderboardResponse | null>(null);
 
   const getParsedLeaderboard = async (id: string) => {
-    const { contacts } = (await aituBridge.getContacts()) || [];
+    let contacts: ContactsResponse = [];
+
+    try {
+      contacts = (await aituBridge.getContacts()).contacts;
+    } catch (e) {
+      console.log(e);
+    }
+
     const { data: leaderboard } = await getLeaderboard(id, gameName, contacts);
     setLeaderboard(leaderboard);
   };

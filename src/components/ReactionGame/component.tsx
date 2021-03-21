@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useHistory } from 'react-router-dom';
+import aituBridge from '@btsd/aitu-bridge';
 
 import { GameTemplate } from '../GameTemplate';
 import { GameType, AlarmIcon, updateScore } from '../../core';
@@ -66,6 +67,7 @@ export const ReactionGame = () => {
   useEffect(() => {
     if (roundState === 3) {
       if (me) updateScore(me.id, GameType.reactionTime, sumScore / NUM_ROUND);
+      aituBridge.vibrate([2000, 500, 2000, 500]);
     }
   }, [roundState]);
 

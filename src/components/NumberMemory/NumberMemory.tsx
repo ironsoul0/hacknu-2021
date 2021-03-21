@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IonButton, IonInput, IonProgressBar } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import aituBridge from '@btsd/aitu-bridge';
 
 import './NumberMemory.css';
 import { useMe } from '../../hooks';
@@ -42,7 +43,6 @@ const NumberMemory: React.FC = () => {
   const handleInputChange = (event: any) => {
     setGuess(event.target.value);
     setInputValue(event.target.value);
-    // const num = parseInt(event.target.value);
   };
 
   const sendUserInput = () => {
@@ -50,6 +50,7 @@ const NumberMemory: React.FC = () => {
     if (guess !== answer.toString()) {
       setGameActive(4);
       if (me) updateScore(me.id, GameType.numberMemory, level);
+      aituBridge.vibrate([2000, 500, 2000, 500]);
     } else {
       setGameActive(3);
     }

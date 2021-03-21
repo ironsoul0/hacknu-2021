@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useHistory } from 'react-router';
+import aituBridge from '@btsd/aitu-bridge';
 
 import { GameTemplate } from '../GameTemplate';
 import { ChimpIcon, GameType, updateScore } from '../../core';
@@ -49,6 +50,7 @@ export const ChimpGame = () => {
     if (valueClicked !== target) {
       if (gameState.strikes + 1 === MAX_STRIKES) {
         if (me) updateScore(me.id, GameType.chimpTest, gameState.numbers);
+        aituBridge.vibrate([2000, 500, 2000, 500]);
       }
 
       setGameState((gameState) => ({
