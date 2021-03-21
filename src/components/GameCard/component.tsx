@@ -19,6 +19,7 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
         points ? `Мой рекорд в мини-игре "${name}" это ${points} ${unit}` : `Привет! Нашел очень крутое приложение.`,
         'Мини-приложение Aitu IQ позволяет очень легко и весело измерять способности мозга в увлекательной и соревновательной форме!',
         'Скорее переходи по ссылке и присоединяйся ;)',
+        'https://i2.app.link/Q4GDVUuANeb',
       ].join('\n\n');
 
       await aituBridge.share(text);
