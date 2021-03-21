@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import { useHistory } from 'react-router-dom';
 
 import { GameTemplate } from '../GameTemplate';
-import { GameType, ReactionIcon, updateScore } from '../../core';
+import { GameType, AlarmIcon, updateScore } from '../../core';
 import { useMe } from '../../hooks';
 
 const MIN_COUNT_DOWN = 2000;
 const MAX_COUNT_DOWN = 4000;
 const NUM_ROUND = 4;
-const icon = <ReactionIcon />;
+const icon = <AlarmIcon />;
 
 export const ReactionGame = () => {
   const me = useMe();

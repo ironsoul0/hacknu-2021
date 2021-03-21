@@ -2,15 +2,15 @@ import React, { FC, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { PlayIcon, ChartIcon, ChimpIcon, ReactionIcon, NumberMemoryIcon, GameType } from '../../core';
+import { PlayIcon, ChartIcon, ChimpIcon, ReactionIcon, NumberMemoryIcon, AlarmIcon, GameType } from '../../core';
 import { Props } from './props';
 
 export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
   ({ name, id, percentile, points, unit, className }: Props, ref) => {
     const gameIcons = {
-      reactionTime: <ReactionIcon className="w-44" />,
-      numberMemory: <NumberMemoryIcon className="w-44" />,
-      chimpTest: <ChimpIcon className="w-44" />,
+      reactionTime: <AlarmIcon className="w-28" />,
+      numberMemory: <NumberMemoryIcon className="w-28" />,
+      chimpTest: <ChimpIcon className="w-32" />,
     };
 
     return (

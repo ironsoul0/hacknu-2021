@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import aituBridge from '@btsd/aitu-bridge';
 
 import { useMe, useGames } from '../../hooks';
 import { GameCard, Spinner } from '../../components';
@@ -37,7 +38,7 @@ export const DashboardPage: React.FC = () => {
           </div>
           <div className="animate-smooth-appear">
             {games.map((game, i) => (
-              <GameCard key={game.id} {...game} className="mb-6" ref={(ref) => (cardsRef.current[i] = ref)} />
+              <GameCard key={game.id} {...game} className="mb-12" ref={(ref) => (cardsRef.current[i] = ref)} />
             ))}
           </div>
         </>

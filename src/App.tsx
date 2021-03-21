@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonRouterOutlet, IonContent, IonInfiniteScrollContent } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Provider as JotaiProvider } from 'jotai';
 
@@ -13,21 +13,23 @@ const App: React.FC = () => (
     <IonApp className="max-w-md mx-auto">
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/">
-            <DashboardPage />
-          </Route>
-          <Route exact path="/leaderboard/:type">
-            <LeaderboardPage />
-          </Route>
-          <Route exact path={`/game/${GameType.reactionTime}`}>
-            <ReactionGame />
-          </Route>
-          <Route exact path={`/game/${GameType.numberMemory}`}>
-            <NumberMemory />
-          </Route>
-          <Route exact path={`/game/${GameType.chimpTest}`}>
-            <ChimpGame />
-          </Route>
+          <IonContent>
+            <Route exact path="/">
+              <DashboardPage />
+            </Route>
+            <Route exact path="/leaderboard/:type">
+              <LeaderboardPage />
+            </Route>
+            <Route exact path={`/game/${GameType.reactionTime}`}>
+              <ReactionGame />
+            </Route>
+            <Route exact path={`/game/${GameType.numberMemory}`}>
+              <NumberMemory />
+            </Route>
+            <Route exact path={`/game/${GameType.chimpTest}`}>
+              <ChimpGame />
+            </Route>
+          </IonContent>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
