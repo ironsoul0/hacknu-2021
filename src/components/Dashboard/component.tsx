@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import aituBridge from '@btsd/aitu-bridge';
 
 import { useMe, useGames } from '../../hooks';
 import { GameCard, Spinner } from '../../components';
