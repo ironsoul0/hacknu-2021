@@ -17,8 +17,12 @@ export const useLeaderboard = (gameName: GameType) => {
       console.log(e);
     }
 
-    const { data: leaderboard } = await getLeaderboard(id, gameName, contacts);
-    setLeaderboard(leaderboard);
+    try {
+      const { data: leaderboard } = await getLeaderboard(id, gameName, contacts);
+      setLeaderboard(leaderboard);
+    } catch {
+      setLeaderboard([]);
+    }
   };
 
   useEffect(() => {

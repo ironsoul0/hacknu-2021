@@ -17,7 +17,7 @@ export const useMe = () => {
         const { data: userInfo } = await createUser({ ...getMeResult, phone });
         setMe(userInfo);
       } catch (e) {
-        alert(e);
+        console.log(e);
       }
     };
 
