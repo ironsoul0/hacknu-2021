@@ -78,7 +78,7 @@ const NumberMemory: React.FC = () => {
   }, [activeGame, counter]);
 
   const getCorrectTextSize = () => {
-    const size = Math.max(8 - Math.max(level - 5, 0), 4);
+    const size = Math.max(8 - Math.max(level - 5, 0), 4).toFixed(0);
     return `text-${size}xl`;
   };
 
