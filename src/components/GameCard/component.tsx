@@ -2,7 +2,7 @@ import React, { FC, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { PlayIcon, ChartIcon, ChimpIcon, ReactionIcon, NumberMemoryIcon, AlarmIcon, GameType } from '../../core';
+import { PlayIcon, ChartIcon, ChimpIcon, ShareIcon, NumberMemoryIcon, AlarmIcon, GameType } from '../../core';
 import { Props } from './props';
 
 export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
@@ -51,11 +51,17 @@ export const GameCard: FC<Props> = forwardRef<HTMLDivElement, Props>(
               </Link>
             </div>
           </div>
-          <div className="col-span-6 flex justify-center">
+          <div className="col-span-3 flex justify-center">
             <div className="container bg-gray-100 rounded-full flex justify-center items-center mx-3 p-3 shadow-sm">
               <Link to={`/leaderboard/${id}`} className="text-blue-500 text-xl font-medium flex items-center">
                 <ChartIcon className="w-7" />
-                <p className="ml-1.5">Друзья</p>
+              </Link>
+            </div>
+          </div>
+          <div className="col-span-3 flex justify-center">
+            <div className="container bg-gray-100 rounded-full flex justify-center items-center mx-3 p-3 shadow-sm">
+              <Link to={`/leaderboard/${id}`} className="text-blue-500 text-xl font-medium flex items-center">
+                <ShareIcon className="w-7" />
               </Link>
             </div>
           </div>
